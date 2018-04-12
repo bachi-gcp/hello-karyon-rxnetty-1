@@ -11,6 +11,12 @@ before_install:
 - sudo gem install bundler
 - sudo gem install deb-s3
 
+
+
+script:
+- ./gradlew clean packDeb
+
+
 deploy:
   provider: gcs
   access_key_id: "GOOGJZTKC2LBNVEGLFFW"

@@ -1,4 +1,4 @@
-# add travi yml file and file
+# add travi yml file
 language: java
 dist: trusty
 sudo: required
@@ -14,5 +14,3 @@ before_install:
 script:
 - ./gradlew clean packDeb
 - deb-s3 upload --bucket spin-travis --access-key-id $AccessKeyID --secret-access-key $AccessSecret --arch amd64 --codename trusty --preserve-versions true build/distributions/*.deb
-
-addons:

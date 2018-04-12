@@ -11,6 +11,9 @@ before_install:
 - sudo gem install bundler
 - sudo gem install deb-s3
 
-script:
-- ./gradlew clean packDeb
-- deb-s3 upload --bucket spin-travis --access-key-id $AccessKeyID --secret-access-key $AccessSecret --arch amd64 --codename trusty --preserve-versions true build/distributions/*.deb
+deploy:
+  provider: gcs
+  access_key_id: "GOOGJZTKC2LBNVEGLFFW"
+  secret_access_key: "FSEwvHea1f7ja+MQbY8G8A1HobS+mLSTVfzsTj1U"
+  bucket: "test-travis-123"
+  skip_cleanup: true

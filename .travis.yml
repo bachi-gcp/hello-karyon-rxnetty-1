@@ -4,7 +4,7 @@ dist: trusty
 
 env:
   global:
-    - aptly=35.202.97.139
+    - aptly=35.196.231.91
     
 addons:
   apt:

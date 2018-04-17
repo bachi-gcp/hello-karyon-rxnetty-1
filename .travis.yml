@@ -1,15 +1,19 @@
-# add travi yml file
 language: java
-dist: trusty
 sudo: required
+dist: trusty
 
+env:
+  global:
+    - aptly=35.202.97.139
+    
+addons:
+  apt:
+    packages:
+      - curl
 
 script:
-- ./gradlew clean packDeb
-
-deploy:
-  provider: gcs
-  access_key_id: $gcp_access
-  secret_access_key: $gcp_secret
-  bucket: "test-travis-123"
-  skip_cleanup: true
+  - ./gradlew clean packDeb
+  - sed -i -- 's/aptly-ip/$aptly/g' upload-deb.sh
+  - chmod +x ./upload-deb.sh
+  - ./upload-deb.sh
+  - sed -i -- 's/$aptly/aptly-ip/g' upload-deb.sh
